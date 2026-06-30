@@ -87,32 +87,33 @@ class Rectangle {
 class TodoItem {
     private boolean completed = false;
     final int id;
-    String title;
+    public String title;
 
-    TodoItem(int id, String title, boolean completed) {
+    TodoItem(int id, String title) {
         // TODO: implement
-        this.id = 0;
+        this.id = id;
         this.title = title;
-        this.completed = completed;
     }
 
     boolean isCompleted() {
         // TODO: implement
-        return false;
+       return completed;
     }
 
     void toggle() {
         // TODO: implement
+        completed = !completed;
     }
 
     void complete() {
         // TODO: implement
+        completed = true;
     }
 
     @Override
     public String toString() {
         // TODO: implement — return "[✅] title" or "[⬜] title"
-        return "";
+        return (completed ? "[✅] " : "[⬜] ") + title;
     }
 }
 
@@ -146,24 +147,38 @@ class Stopwatch {
 
     boolean isRunning() {
         // TODO: implement
-        return false;
+        return running;
     }
 
     long getElapsedMs() {
         // TODO: implement
-        return 0;
+        return running ? System.currentTimeMillis() - startTime : accumulated;
     }
 
     void start() {
         // TODO: implement — throw IllegalArgumentException if already running
+        if (running) {
+            throw new IllegalArgumentException("Stopwatch is already running");
+        }
+        running = true;
+        startTime = System.currentTimeMillis();
     }
 
     void stop() {
         // TODO: implement — throw IllegalArgumentException if not running
+        if (!running) {
+            throw new IllegalArgumentException("Stopwatch is not running");
+        }
+        running = false;
+        accumulated += System.currentTimeMillis() - startTime;
     }
 
     void reset() {
         // TODO: implement — throw IllegalArgumentException if running
+        if (running) {
+            throw new IllegalArgumentException("Stopwatch is running");
+        }
+        accumulated = 0;
     }
 }
 
@@ -198,27 +213,42 @@ class InventoryItem {
 
     InventoryItem(String name, int quantity, double price) {
         // TODO: implement — auto-assign id, add to items list
-        this.id = 0;
+        // 
+        this.id = nextId++;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        items.add(this);
     }
 
     static List<InventoryItem> getAll() {
         // TODO: implement — return a copy of items
-        return new ArrayList<>();
+        //
+        return new ArrayList<>(items);
     }
 
     static double getTotalValue() {
         // TODO: implement
-        return 0;
+        double total = 0;
+        for (InventoryItem item : items) {
+            total += item.quantity * item.price;
+        }
+        return total;
     }
 
     static InventoryItem findByName(String name) {
         // TODO: implement — case-insensitive search, return null if not found
+        for (InventoryItem item : items) {
+            if (item.name.equalsIgnoreCase(name)) {
+                return item;
+            }
+        }
         return null;
     }
 
     static int getCount() {
         // TODO: implement
-        return 0;
+        return items.size();
     }
 }
 
@@ -255,39 +285,48 @@ class TemperatureConverter {
 
     double getCelsius() {
         // TODO: implement
-        return 0;
+        if (celsius < -273.15) {
+            throw new IllegalArgumentException("Celsius cannot be below -273.15");
+        }
+        return celsius;
     }
 
     void setCelsius(double value) {
         // TODO: implement — throw IllegalArgumentException if below -273.15
+        if (value < -273.15) {
+            throw new IllegalArgumentException("Celsius cannot be below -273.15");
+        }
+        celsius = value;
     }
 
     double getFahrenheit() {
         // TODO: implement
-        return 0;
+        return celsius * 9 / 5 + 32;
     }
 
     void setFahrenheit(double value) {
         // TODO: implement — convert to celsius, use setCelsius for validation
+        celsius = (value - 32) * 5 / 9;
     }
 
     double getKelvin() {
         // TODO: implement
-        return 0;
+        return celsius + 273.15;
     }
 
     void setKelvin(double value) {
         // TODO: implement — convert to celsius, use setCelsius for validation
+        celsius = value - 273.15;
     }
 
     static boolean isFreezing(double celsius) {
         // TODO: implement
-        return false;
+        return celsius <= 0;
     }
 
     static boolean isBoiling(double celsius) {
         // TODO: implement
-        return false;
+        return celsius >= 100;
     }
 }
 

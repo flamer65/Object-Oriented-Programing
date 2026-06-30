@@ -26,8 +26,8 @@ java BasicClass.java
 |----|------------------------------|--------|
 | 01 | Classes & Objects            | ✅     |
 | 02 | Inheritance                  | ✅     |
-| 03 | Interfaces                   | 🔜     |
-| 04 | Abstract Classes             | 🔜     |
+| 03 | Interfaces                   | ✅     |
+| 04 | Abstract Classes             | ✅     |
 | 05 | Type System & Generics       | 🔜     |
 | 06 | Encapsulation                | 🔜     |
 | 07 | Polymorphism                 | 🔜     |
@@ -53,7 +53,18 @@ oop/
     ├── ProtectedMembers.java    ← Lesson 2: protected access
     ├── MethodOverriding.java    ← Lesson 3: @Override & super
     ├── Exercise.java            ← Practice exercises (TODO stubs)
-    └── Solution.java            ← Reference solutions
+│
+├── 03-interfaces/
+│   ├── BasicInterfaces.java    ← Lesson 1: Interface basics
+│   ├── AdvancedInterfaces.java ← Lesson 2: Default, static, functional
+│   ├── Exercise.java           ← Practice exercises (TODO stubs)
+│   └── Solution.java           ← Reference solutions
+│
+├── 04-abstract-classes/
+│   ├── BasicAbstractClasses.java    ← Lesson 1: Abstract class fundamentals
+│   ├── AdvancedAbstractClasses.java ← Lesson 2: Hierarchies, factories, patterns
+│   ├── Exercise.java                ← Practice exercises (write from scratch!)
+│   └── Solution.java                ← Reference solutions
 ```
 
 ## 🧭 Learning Path

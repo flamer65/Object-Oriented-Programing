@@ -336,7 +336,7 @@ public class BasicInheritance {
         // Make: Tesla, Doors: 4, Fuel: Electric
         System.out.println("Battery: " + tesla.batteryCapacityKWh + " kWh");
         // Battery: 75.0 kWh
-
+    
         // instanceof checks — true for ALL ancestors
         System.out.println("\ninstanceof checks:");
         System.out.println("  ElectricCar: " + (tesla instanceof ElectricCar));  // true

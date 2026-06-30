@@ -397,11 +397,11 @@ public class MethodOverriding {
         // ─────────────────────────────────────────
         System.out.println("═══ 1. Basic Method Overriding ═══");
 
-        Animal[] animals = {
+        Animal[] animals = new Animal[] {
             new Dog("Buddy", "Golden Retriever"),
-            new Cat("Whiskers"),
+            new Cat("Whiskers"),        
             new Snake("Slinky"),
-            new Animal("Unknown Creature"),
+            new Animal("Unknown Creature")
         };
 
         // Each animal uses ITS OWN version of makeSound() and describe()

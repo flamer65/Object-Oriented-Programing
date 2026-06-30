@@ -49,6 +49,7 @@ class Shape {
 
     Shape(String color) {
         // TODO: implement
+        this.color = color;
     }
 
     double getArea() {
@@ -58,50 +59,53 @@ class Shape {
 
     String describe() {
         // TODO: implement — return "A {color} shape"
-        return "";
+        return "A " + color + " shape";
     }
 }
 
 class CircleShape extends Shape {
-    double radius;
+    int radius;
 
-    CircleShape(String color, double radius) {
+    CircleShape(String color, int radius) {
         super(color);
+        this.radius = radius;
         // TODO: implement
     }
 
     @Override
     double getArea() {
         // TODO: implement — return π × radius²
-        return 0;
+        return Math.PI * radius * radius;
     }
 
     @Override
     String describe() {
         // TODO: implement — return "A {color} circle with radius {radius}"
-        return "";
+        return "A " + color + " circle with radius " + radius;
     }
 }
 
 class RectangleShape extends Shape {
-    double width;
-    double height;
+    int width;
+    int height;
 
-    RectangleShape(String color, double width, double height) {
+    RectangleShape(String color, int width, int height) {
         super(color);
         // TODO: implement
+        this.width = width;
+        this.height = height;
     }
 
     @Override
     double getArea() {
         // TODO: implement — return width × height
-        return 0;
+        return width * height;
     }
 
     @Override
     String describe() {
         // TODO: implement — return "A {color} rectangle ({width} x {height})"
-        return "";
+        return "A " + color + " rectangle (" + width + " x " + height + ")";
     }
 }
 
@@ -141,71 +145,72 @@ class RectangleShape extends Shape {
 // TODO: Create Employee, Manager, and Developer classes here
 class Employee {
     String name;
-    protected double baseSalary;
+    protected int baseSalary;
 
-    Employee(String name, double baseSalary) {
+    Employee(String name, int baseSalary) {
         // TODO: implement
-        this.name = "";
-        this.baseSalary = 0;
+        this.name = name;
+        this.baseSalary = baseSalary;
     }
 
-    double calculatePay() {
+    int calculatePay() {
         // TODO: implement
-        return 0;
+        return baseSalary;
     }
 
     String getRole() {
         // TODO: implement
-        return "";
+        return "Employee";
     }
 
     @Override
     public String toString() {
         // TODO: implement — return "{getRole()}: {name} - ${calculatePay()}"
-        return "";
+        return String.format("%s: %s - $%d", getRole(), name, calculatePay());
     }
 }
 
 class Manager extends Employee {
-    private double bonus;
+    private int bonus;
 
-    Manager(String name, double baseSalary, double bonus) {
+    Manager(String name, int baseSalary, int bonus) {
         super(name, baseSalary);
+        this.bonus = bonus;
         // TODO: implement
     }
 
     @Override
-    double calculatePay() {
+    int calculatePay() {
         // TODO: implement — return baseSalary + bonus
-        return 0;
+        return baseSalary +  this.bonus;
     }
 
     @Override
     String getRole() {
         // TODO: implement
-        return "";
+        return "Manager";
     }
 }
 
 class Developer extends Employee {
     String language;
 
-    Developer(String name, double baseSalary, String language) {
+    Developer(String name, int baseSalary, String language) {
         super(name, baseSalary);
         // TODO: implement
-        this.language = "";
+        this.language = language;
     }
 
     @Override
     String getRole() {
         // TODO: implement
-        return "";
+        return "Developer";
     }
 
     @Override
     public String toString() {
         // TODO: implement — call super.toString() and append " [{language}]"
-        return "";
+        return super.toString() + " [" + language + "]";
     }
 }
 
@@ -251,18 +256,18 @@ class MediaItem {
 
     MediaItem(String title, int durationSec) {
         // TODO: implement
-        this.title = "";
-        this.durationSec = 0;
+        this.title = title;
+        this.durationSec = durationSec;
     }
 
     String play() {
         // TODO: implement — return "▶ Playing: {title}"
-        return "";
+        return "▶ Playing: " + title;
     }
 
     String getFormattedDuration() {
         // TODO: implement — return "Xm Ys"
-        return "";
+        return durationSec / 60 + "m " + durationSec % 60 + "s";
     }
 }
 
@@ -272,13 +277,13 @@ class Song extends MediaItem {
     Song(String title, int durationSec, String artist) {
         super(title, durationSec);
         // TODO: implement
-        this.artist = "";
+        this.artist = artist;
     }
 
     @Override
     String play() {
         // TODO: implement — return "▶ Playing: {title} by {artist}"
-        return "";
+        return "▶ Playing: " + title + " by " + artist;
     }
 }
 
@@ -289,14 +294,14 @@ class Podcast extends MediaItem {
     Podcast(String title, int durationSec, String host, int episode) {
         super(title, durationSec);
         // TODO: implement
-        this.host = "";
-        this.episode = 0;
+        this.host = host;
+        this.episode = episode;
     }
 
     @Override
     String play() {
         // TODO: implement — return "▶ Playing: {title} - Ep.{episode} with {host}"
-        return "";
+        return "▶ Playing: " + title + " - Ep." + episode + " with " + host;
     }
 }
 
@@ -306,13 +311,13 @@ class LivePodcast extends Podcast {
     LivePodcast(String title, int durationSec, String host, int episode, int listenerCount) {
         super(title, durationSec, host, episode);
         // TODO: implement
-        this.listenerCount = 0;
+        this.listenerCount = listenerCount;
     }
 
     @Override
     String play() {
         // TODO: implement — call super.play() and append " [LIVE 🔴 {listenerCount} listeners]"
-        return "";
+        return super.play() + " [LIVE 🔴 " + listenerCount + " listeners]";
     }
 }
 
@@ -352,12 +357,13 @@ class Coupon {
 
     Coupon(String code, double minPurchase) {
         // TODO: implement
-        this.code = "";
+        this.code = code;
+        this.minPurchase = minPurchase;
     }
 
     protected boolean isValid(double orderTotal) {
         // TODO: implement
-        return false;
+        return orderTotal >= minPurchase;
     }
 
     protected double calculateDiscount(double orderTotal) {
@@ -367,7 +373,10 @@ class Coupon {
 
     double apply(double orderTotal) {
         // TODO: implement — check isValid, calculate discount, floor at 0
-        return orderTotal;
+        if (!isValid(orderTotal)) {
+            return orderTotal;
+        }
+        return Math.max(0, orderTotal - calculateDiscount(orderTotal));
     }
 }
 
@@ -377,12 +386,13 @@ class PercentageCoupon extends Coupon {
     PercentageCoupon(String code, double minPurchase, double percent) {
         super(code, minPurchase);
         // TODO: implement
+        this.percent = percent;
     }
 
     @Override
     protected double calculateDiscount(double orderTotal) {
         // TODO: implement — return orderTotal * percent / 100
-        return 0;
+        return orderTotal * percent / 100;
     }
 }
 
@@ -391,13 +401,14 @@ class FixedCoupon extends Coupon {
 
     FixedCoupon(String code, double minPurchase, double discountAmount) {
         super(code, minPurchase);
+        this.discountAmount = discountAmount;
         // TODO: implement
     }
 
     @Override
     protected double calculateDiscount(double orderTotal) {
         // TODO: implement — return discountAmount
-        return 0;
+        return discountAmount;
     }
 }
 
@@ -439,24 +450,25 @@ class FleetVehicle {
 
     FleetVehicle(String id, String make, int mileage) {
         // TODO: implement
-        this.id = "";
-        this.make = "";
-        this.mileage = 0;
+        this.id = id;
+        this.make = make;
+        this.mileage = mileage;
     }
 
     void drive(int km) {
         // TODO: implement
+        this.mileage += km;
     }
 
     boolean needsMaintenance() {
         // TODO: implement — return true if mileage >= 10000
-        return false;
+        return mileage >= 10000;
     }
 
     @Override
     public String toString() {
         // TODO: implement — return "[{id}] {make} - {mileage} km"
-        return "";
+        return String.format("[%s] %s - %d km", id, make, mileage);
     }
 }
 
@@ -465,19 +477,20 @@ class Truck extends FleetVehicle {
 
     Truck(String id, String make, int cargoCapacityTons, int mileage) {
         super(id, make, mileage);
+        this.cargoCapacityTons = cargoCapacityTons;
         // TODO: implement
     }
 
     @Override
     public String toString() {
         // TODO: implement — call super.toString() and append " (Truck, {cargoCapacityTons}T)"
-        return "";
+        return String.format("%s (Truck, %dT)", super.toString(), cargoCapacityTons);
     }
 
     @Override
     boolean needsMaintenance() {
         // TODO: implement — return true if mileage >= 8000
-        return false;
+        return mileage >= 8000;
     }
 }
 
@@ -487,12 +500,13 @@ class Bus extends FleetVehicle {
     Bus(String id, String make, int passengerCapacity, int mileage) {
         super(id, make, mileage);
         // TODO: implement
+        this.passengerCapacity = passengerCapacity;
     }
 
     @Override
     public String toString() {
         // TODO: implement — call super.toString() and append " (Bus, {passengerCapacity} seats)"
-        return "";
+        return String.format("%s (Bus, %d seats)", super.toString(), passengerCapacity);
     }
 }
 
@@ -524,6 +538,7 @@ public class Exercise {
         test("Shape area = 0", s.getArea() == 0);
 
         CircleShape c = new CircleShape("red", 5);
+
         test("Circle describe",
                 c.describe().equals("A red circle with radius 5"));
         test("Circle area ≈ 78.54",
@@ -531,6 +546,7 @@ public class Exercise {
         test("Circle instanceof Shape", c instanceof Shape);
 
         RectangleShape r = new RectangleShape("blue", 4, 6);
+       
         test("Rectangle describe",
                 r.describe().equals("A blue rectangle (4 x 6)"));
         test("Rectangle area = 24", r.getArea() == 24);
@@ -541,9 +557,9 @@ public class Exercise {
         Employee emp = new Employee("Alice", 50000);
         test("Employee role", emp.getRole().equals("Employee"));
         test("Employee pay", emp.calculatePay() == 50000);
+        System.out.println(emp.toString());
         test("Employee toString",
                 emp.toString().equals("Employee: Alice - $50000"));
-
         Manager mgr = new Manager("Bob", 80000, 20000);
         test("Manager role", mgr.getRole().equals("Manager"));
         test("Manager pay includes bonus", mgr.calculatePay() == 100000);
@@ -616,6 +632,7 @@ public class Exercise {
                 truck.toString().equals("[T-001] Volvo - 8500 km (Truck, 20T)"));
 
         Bus bus = new Bus("B-042", "Mercedes", 50, 9000);
+        System.out.println(bus.toString());
         test("Bus toString",
                 bus.toString().equals("[B-042] Mercedes - 9000 km (Bus, 50 seats)"));
         test("Bus no maintenance at 9000",

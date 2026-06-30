@@ -6,13 +6,13 @@
  *  QUICK RECAP — ACCESS MODIFIERS IN INHERITANCE:
  *  ──────────────────────────────────────────────
  *
- *  ┌──────────────┬───────────┬─────────────┬────────────┬───────────┐
- *  │  Modifier    │ Same Class│ Same Package│ Child Class│  Outside  │
- *  ├──────────────┼───────────┼─────────────┼────────────┼───────────┤
+ *  ┌──────────────┬───────────┬─────────────┬────────────-┬───────────┐
+ *  │  Modifier    │ Same Class│ Same Package│ Child Class │  Outside  │
+ *  ├──────────────┼───────────┼─────────────┼────────────-┼───────────┤
  *  │  public      │    ✅     │     ✅      │     ✅     │    ✅     │
- *  │  protected   │    ✅     │     ✅      │     ✅     │    ❌     │
- *  │  (default)   │    ✅     │     ✅      │     ❌*    │    ❌     │
- *  │  private     │    ✅     │     ❌      │     ❌     │    ❌     │
+ *  │  protected   │    ✅     │     ✅      │     ✅     │    ❌      │
+ *  │  (default)   │    ✅     │     ✅      │     ❌*     │    ❌      │
+ *  │  private     │    ✅     │     ❌       │     ❌       │    ❌      │
  *  └──────────────┴───────────┴─────────────┴────────────┴───────────┘
  *
  *  * (default) = package-private, accessible in same package only.
@@ -360,7 +360,7 @@ public class ProtectedMembers {
         // ─────────────────────────────────────────
         System.out.println("\n═══ 2. Protected Constructor ═══");
 
-        // BaseLogger logger = new BaseLogger("test");  // ❌ Would fail from outside package
+         BaseLogger logger = new BaseLogger("test");  // ❌ Would fail from outside package
         AppLogger appLog = new AppLogger("MyApp");
         DbLogger dbLog = new DbLogger("PostgreSQL");
 
